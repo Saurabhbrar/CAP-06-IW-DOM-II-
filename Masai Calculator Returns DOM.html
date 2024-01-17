@@ -5,96 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .buttons{
-            color: blueviolet;
-            border: 2px solid green;
-            height: 255px;
-            width: 372px;
-            
-            background-color: rgb(86, 134, 35);
-            border-radius: 5px;
-        }
-        #input1
+        #btn
         {
-            width: 97%;
-            height: 50px;
-            font-size: 20px;
-            background-color: rgb(219, 212, 193);
-            color:  rgb(34, 59, 6);
-            margin-left: 2px;
+            height: 161px;
+            width: 376px;
+            
+            
+        }
+        #btn > button
+        {
+            height: 80px;
+            width: 72px;
+            font-size: 40px;
             border-radius: 10px;
+            background-color: rgba(97, 35, 34, 0.74);
 
-            
-        }
-        .btn
-        {
-            height: 50px;
-            width: 90px;
-            font-size: 20px;
-            background-color: rgb(219, 212, 193);
-            color:  rgb(34, 59, 6);
-            border-radius: 10px;  
-        }
-        .btn1
-        {
-            height: 50px;
-            width: 90px;
-            font-size: 20px;
-            background-color: rgb(219, 212, 193);
-            color:  rgb(34, 59, 6);
-            border-radius: 10px;  
-        }
-        
-        .btn2
-        {
-            height: 50px;
-            width: 90px;
-            font-size: 20px;
-            background-color: rgb(219, 212, 193);
-            color:  rgb(34, 59, 6);
-            border-radius: 10px; 
         }
 
-        .btn3
+        #operators > button
         {
-            height: 50px;
-            width: 90px;
-            font-size: 20px;
-            background-color: rgb(219, 212, 193);
-            color:  rgb(34, 59, 6);
-            border-radius: 10px; 
+            height: 80px;
+            width: 72px;
+            border-radius: 10px;
+            font-size: 40px;
+            background-color: rgba(97, 35, 34, 0.74);
+        }
+
+        #equal
+        {
+            height: 80px;
+            width: 72px;
+            border-radius: 10px;
+            font-size: 40px;
+            background-color: rgba(97, 35, 34, 0.74);
             
+        }
+        #display
+        {
+            height: 80px;
+            width: 300px;
+            border-radius: 10px;
+            font-size: 40px;
+            background-color: rgba(181, 225, 142, 0.74);
+            color: blue;
         }
     </style>
 </head>
 <body>
+    <h1 id="display">I am Calculator</h1>
+    <div id="operators" >
+        <button>+</button>
+        <button>-</button>
+        <button>*</button>
+        <button>/</button>
+    </div>
+    <button id="equal">=</button>
+    <div id="btn" >
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>0</button>
+    </div>
+
     
-<div class="buttons" >
-    <input type="number" name="" id="input1" >
-    
-    <button class="btn" >1</button>
-    <button class="btn" >2</button>
-    <button class="btn" >3</button>
-    <button class="btn1" >/</button>
-    <button class="btn" >4</button>
-    <button class="btn" >5</button>
-    <button class="btn" >6</button>
-    <button class="btn1" >*</button>
-    <button class="btn" >7</button>
-    <button class="btn" >8</button>
-    <button class="btn" >9</button>
-    <button class="btn1" >-</button>
-    <button class="btn3" >C</button>
-    <button class="btn" >0</button>
-    <button class="btn2" >=</button>
-    <button class="btn1" >+</button>
-</div>
-
-
-
     
 </body>
 </html>
 <script>
+    let key = document.querySelectorAll('#btn > button');
+    let operators = document.querySelectorAll('#operators > button');
+    let firstnum = "";
+    let secondnum = "";
+    let heading = document.getElementById('display')
+    let value = true ;
+    let opt = "";
+    let equal = document.getElementById("equal")
 
+    equal.addEventListener('click', function()
+    {
+        heading.innerText = calculator (firstnum,secondnum,opt)
+    })
+
+    for(let i = 0 ; i<key.length ; i++)
+    {
+        key[i].addEventListener('click', function()
+        {
+            if(value == true)
+            {
+                firstnum += key[i].innerText
+                heading.innerText = firstnum
+            }
+
+            else
+            {
+                secondnum += key[i].innerText
+                heading.innerText = secondnum
+            }
+            
+        })
+    }
+
+    for(let i = 0 ; i< operators.length ; i++)
+    {
+        operators[i].addEventListener('click',function()
+        {
+            value = false ;
+            opt = operators[i].innerText
+        })
+    }
+function calculator (firstnum,secondnum,opt)
+{
+    switch(opt)
+    {
+        case "+" : 
+        return Number(firstnum) + Number(secondnum);
+
+        case "-" : 
+        return Number(firstnum) - Number(secondnum);
+
+        case "*" : 
+        return Number(firstnum) * Number(secondnum);
+
+        case "/" : 
+        return Number(firstnum) / Number(secondnum);
+    }
+}
+    
 </script>
